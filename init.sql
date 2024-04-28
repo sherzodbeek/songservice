@@ -1,0 +1,3 @@
+CREATE USER song_service;
+CREATE DATABASE song;
+GRANT ALL PRIVILEGES ON DATABASE song TO song_service;
