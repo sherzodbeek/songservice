@@ -7,5 +7,5 @@ import lombok.Data;
 @Builder
 public class CreateSongMetadataResponse {
 
-    Long id;
+    Integer id;
 }

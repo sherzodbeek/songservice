@@ -11,12 +11,12 @@ public interface SongService {
 
     CreateSongMetadataResponse createSongMetadata(SongMetadataDTO songMetaDataDTO);
 
-    SongMetadataDTO getSongMetadata(Long id);
+    SongMetadataDTO getSongMetadata(Integer id);
 
-    DeletedSongMetadataDTO deleteSongMetadata(List<Long> ids);
+    DeletedSongMetadataDTO deleteSongMetadata(String ids);
 
-    void updateSongMetaData(Long id, SongMetadataDTO songMetadataDTO);
+    void updateSongMetaData(Integer id, SongMetadataDTO songMetadataDTO);
 
-    SongMetadataDTO getByResourceId(Long id);
+    SongMetadataDTO getByResourceId(Integer id);
 
 }

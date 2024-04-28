@@ -11,6 +11,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -42,7 +43,7 @@ public class SongServiceImpl implements SongService {
     }
 
     @Override
-    public SongMetadataDTO getSongMetadata(Long id) {
+    public SongMetadataDTO getSongMetadata(Integer id) {
         SongMetadata songMetadata = repository
                 .findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(
@@ -60,15 +61,16 @@ public class SongServiceImpl implements SongService {
     }
 
     @Override
-    public DeletedSongMetadataDTO deleteSongMetadata(List<Long> ids) {
-        List<SongMetadata> songMetadatas = repository.findAllById(ids);
-        List<Long> deletedIds = songMetadatas.stream().map(SongMetadata::getId).toList();
+    public DeletedSongMetadataDTO deleteSongMetadata(String ids) {
+        List<Integer> deletingIds = Arrays.stream(ids.split(",")).map(Integer::valueOf).toList();
+        List<SongMetadata> songMetadatas = repository.findAllById(deletingIds);
+        List<Integer> deletedIds = songMetadatas.stream().map(SongMetadata::getId).toList();
         repository.deleteAllById(deletedIds);
         return DeletedSongMetadataDTO.builder().ids(deletedIds).build();
     }
 
     @Override
-    public void updateSongMetaData(Long id, SongMetadataDTO songMetadataDTO) {
+    public void updateSongMetaData(Integer id, SongMetadataDTO songMetadataDTO) {
         SongMetadata songMetadata = repository
                 .findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(
@@ -85,7 +87,7 @@ public class SongServiceImpl implements SongService {
     }
 
     @Override
-    public SongMetadataDTO getByResourceId(Long id) {
+    public SongMetadataDTO getByResourceId(Integer id) {
         SongMetadata songMetadata = repository
                 .findByResourceId(id)
                 .orElseThrow(() -> new ResourceNotFoundException(

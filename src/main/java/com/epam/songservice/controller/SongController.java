@@ -29,26 +29,26 @@ public class SongController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<SongMetadataDTO> get(@PathVariable Long id) {
+    public ResponseEntity<SongMetadataDTO> get(@PathVariable Integer id) {
         SongMetadataDTO songMetadata = songService.getSongMetadata(id);
         return ResponseEntity.ok(songMetadata);
     }
 
     @DeleteMapping
-    public ResponseEntity<DeletedSongMetadataDTO> delete(@RequestParam("id") List<Long> ids) {
+    public ResponseEntity<DeletedSongMetadataDTO> delete(@RequestParam("id") String ids) {
         DeletedSongMetadataDTO response = songService.deleteSongMetadata(ids);
         return ResponseEntity.ok(response);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<SongMetadataDTO> update(
-            @PathVariable Long id, @RequestBody @Valid SongMetadataDTO songMetadataDTO) {
+            @PathVariable Integer id, @RequestBody @Valid SongMetadataDTO songMetadataDTO) {
         songService.updateSongMetaData(id, songMetadataDTO);
         return ResponseEntity.ok(songMetadataDTO);
     }
 
     @GetMapping("/resource")
-    public ResponseEntity<SongMetadataDTO> getByResourceId(@RequestParam("id") Long id) {
+    public ResponseEntity<SongMetadataDTO> getByResourceId(@RequestParam("id") Integer id) {
         SongMetadataDTO songMetadata = songService.getByResourceId(id);
         return ResponseEntity.ok(songMetadata);
     }

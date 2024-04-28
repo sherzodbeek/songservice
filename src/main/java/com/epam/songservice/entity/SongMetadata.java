@@ -14,7 +14,7 @@ public class SongMetadata {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+    private Integer id;
 
     @Column(name = "name")
     private String name;
@@ -29,13 +29,13 @@ public class SongMetadata {
     private String length;
 
     @Column(name = "resource_id")
-    private Long resourceId;
+    private Integer resourceId;
 
     @Column(name = "year")
     private Short year;
 
 
-    public SongMetadata(String name, String artist, String album, String length, Long resourceId, Short year) {
+    public SongMetadata(String name, String artist, String album, String length, Integer resourceId, Short year) {
         this.name = name;
         this.artist = artist;
         this.album = album;

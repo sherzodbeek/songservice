@@ -9,7 +9,7 @@ import lombok.Data;
 @Builder
 public class SongMetadataDTO {
 
-    private Long id;
+    private Integer id;
 
     @NotEmpty(message = "Song name must not be empty!")
     private String name;
@@ -24,7 +24,7 @@ public class SongMetadataDTO {
     private String length;
 
     @NotNull(message = "Resource ID must not be empty!")
-    private Long resourceId;
+    private Integer resourceId;
 
     @NotNull(message = "Song year must not be empty!")
     private Short year;
