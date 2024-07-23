@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class RestExceptionHandler {
 
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
-    public ResponseEntity<Object> notValidFileOrFileLimitExceedException(MethodArgumentNotValidException ex) {
+    public ResponseEntity<String> notValidFileOrFileLimitExceedException(MethodArgumentNotValidException ex) {
         ex.printStackTrace();
         log.error(ex.getMessage());
         return ResponseEntity
@@ -23,14 +23,14 @@ public class RestExceptionHandler {
     }
 
     @ExceptionHandler(value = ResourceNotFoundException.class)
-    public ResponseEntity<Object> entityNotFoundException(ResourceNotFoundException ex) {
+    public ResponseEntity<String> entityNotFoundException(ResourceNotFoundException ex) {
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
                 .body(ex.getMessage());
     }
 
     @ExceptionHandler(value = Exception.class)
-    public ResponseEntity<Object> internalServerException(Exception ex) {
+    public ResponseEntity<String> internalServerException(Exception ex) {
         ex.printStackTrace();
         log.error(ex.getMessage());
         return ResponseEntity
