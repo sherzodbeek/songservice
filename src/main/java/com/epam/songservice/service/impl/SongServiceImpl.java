@@ -8,8 +8,7 @@ import com.epam.songservice.payload.SongMetadataDTO;
 import com.epam.songservice.repository.SongMetadataRepository;
 import com.epam.songservice.service.SongService;
 import jakarta.transaction.Transactional;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +16,9 @@ import java.util.Arrays;
 import java.util.List;
 
 @Service
+@Slf4j
 public class SongServiceImpl implements SongService {
 
-    private static final Logger log = LoggerFactory.getLogger(SongServiceImpl.class);
     private final SongMetadataRepository repository;
 
     @Autowired
@@ -30,7 +29,6 @@ public class SongServiceImpl implements SongService {
     @Override
     @Transactional
     public CreateSongMetadataResponse createSongMetadata(SongMetadataDTO songMetaDataDTO) {
-
         log.info("New Song MetaData: {}", songMetaDataDTO);
         SongMetadata songMetaData = new SongMetadata(
                 songMetaDataDTO.getName(),
